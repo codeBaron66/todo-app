@@ -2,16 +2,20 @@ const form     = document.querySelector('#task-form'),
       taskList = document.querySelector('.collection'),
       moveBtn  = document.querySelector('.move-tasks'),
       clearBtn = document.querySelector('.clear-tasks'),
-      label    = document.querySelector('#label');
+      label    = document.querySelector('#label'),
+      doneDiv  = document.querySelector('.finished-div');
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+let doneTasks = JSON.parse(localStorage.getItem('done')) || [];
 
 form.addEventListener('submit', addTask);
 taskList.addEventListener('click', toggleDone);
 taskList.addEventListener('click', removeTask);
 moveBtn.addEventListener('click', moveTask);
 clearBtn.addEventListener('click', clearTasks);
+
 populateList(tasks, taskList);
 buttons();
+finishedList();
 
 function addTask(e) {
   e.preventDefault();
@@ -82,6 +86,7 @@ function removeTask(e) {
     }
   }
   buttons();
+  finishedList();
 }
 
 function moveTask(e) {
@@ -97,6 +102,7 @@ function clearTasks(e) {
   localStorage.clear();
   tasks = [];
   buttons();
+  finishedList();
 }
 
 function buttons() {
@@ -108,6 +114,14 @@ function buttons() {
     clearBtn.style.display = 'inline-block';
     label.style.display = 'block';
     moveBtn.style.display = 'block';
+  }
+}
+
+function finishedList(){
+  if(doneTasks.length < 1) {
+    doneDiv.style.display = 'none';
+  } else {
+    doneDiv.style.display = 'block';
   }
 }
 
