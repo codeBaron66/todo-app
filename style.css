@@ -1,0 +1,175 @@
+/* GLOBAL GLOBAL GLOBAL GLOBAL */
+body{
+  background: url(tropical.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+a{
+  cursor: pointer;
+}
+.btn{
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+.strike-through{
+  text-decoration: line-through;
+}
+/* BODY BODY BODY BODY BODY */
+
+.container2 {
+  display: block;
+  position: relative;
+  /* padding-left: 35px; */
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container2 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container2:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container2 input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  /* display: none; */
+}
+
+/* Show the checkmark when checked */
+.container2 input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container2 .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
+
+#titleBorder{
+  background-color: #f7f5f8;
+  height: 100px;
+  width: 200px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -80px;
+  margin: 0 auto;
+}
+#title{
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  padding: 10px 20px;
+  color: #fbfdff;
+  background-image: linear-gradient(hsl(208, 98%, 35%), rgb(46, 115, 213));
+  margin: auto;
+  border-radius: 15px;
+}
+/* JUMBOTRON JUMBOTRON JUMBOTRON */
+.jumbotron{
+  background-color: #f7f5f8;
+  padding-top: 34px;
+  margin-top: 90px;
+}
+.col-sm.add-task{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+}
+.btn-primary{
+  background-image: linear-gradient(hsl(93, 56%, 63%), #77b432);
+  border: none;
+  height: 100%;
+  width: 100%;
+  font-size: 1.3rem;
+}
+.btn-primary:hover{
+  background-image: linear-gradient(#77b432, hsl(93, 56%, 63%));
+}
+
+#task-form{
+  margin-top: 100px;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 1.6rem;
+}
+#label{
+  font-size: 1.4rem;
+}
+.fa-trash-alt{
+  color: rgb(60, 125, 214);
+}
+.list-group-item{
+  margin-bottom: 2px;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+.clear-tasks {
+  letter-spacing: 2px;
+  background-image: linear-gradient(#0388fc, #2866bd);
+  border: none;
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+.clear-tasks:hover{
+  background-image: linear-gradient(hsl(208, 98%, 35%), hsl(215, 65%, 54%));
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 700px;
+  }
+}
+@media only screen and (max-width: 575.98px) {
+  .btn.btn-primary{
+    width: 100%;
+  }
+  .add-task{
+    margin-top: 10px;
+    margin-left: 15px;
+  } 
+}
