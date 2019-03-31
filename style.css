@@ -18,76 +18,6 @@ a{
 }
 /* BODY BODY BODY BODY BODY */
 
-.container2 {
-  display: block;
-  position: relative;
-  /* padding-left: 35px; */
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-.container2 input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-/* Create a custom checkbox */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  background-color: #eee;
-}
-
-/* On mouse-over, add a grey background color */
-.container2:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.container2 input:checked ~ .checkmark {
-  background-color: #2196F3;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  /* display: none; */
-}
-
-/* Show the checkmark when checked */
-.container2 input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the checkmark/indicator */
-.container2 .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-
-
-
 #titleBorder{
   background-color: #f7f5f8;
   height: 100px;
@@ -127,21 +57,31 @@ a{
   height: 100%;
   width: 100%;
   font-size: 1.3rem;
+  padding: 0;
 }
 .btn-primary:hover{
   background-image: linear-gradient(#77b432, hsl(93, 56%, 63%));
 }
 
 #task-form{
-  margin-top: 100px;
+  margin-top: 70px;
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: 1.6rem;
 }
 #label{
   font-size: 1.4rem;
 }
+.label1{
+  margin-bottom: 0;
+}
+.trash{
+  padding: 0 4px;
+}
 .fa-trash-alt{
   color: rgb(60, 125, 214);
+}
+.list-group-item.d-flex.justify-content-between.align-items-center{
+  padding: 10px 4px;
 }
 .list-group-item{
   margin-bottom: 2px;
@@ -150,6 +90,7 @@ a{
 }
 .clear-tasks {
   letter-spacing: 2px;
+  color: #fbfdff;
   background-image: linear-gradient(#0388fc, #2866bd);
   border: none;
   margin-top: 10px;
@@ -158,7 +99,17 @@ a{
 .clear-tasks:hover{
   background-image: linear-gradient(hsl(208, 98%, 35%), hsl(215, 65%, 54%));
 }
-
+.move-tasks {
+  letter-spacing: 2px;
+  color: #fbfdff;
+  background-image: linear-gradient(hsl(93, 56%, 63%), #77b432);
+  border: none;
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+.move-tasks:hover{
+  background-image: linear-gradient(#77b432, hsl(93, 56%, 63%));
+}
 @media only screen and (min-width: 768px) {
   .container {
     max-width: 700px;

@@ -1,5 +1,6 @@
 const form     = document.querySelector('#task-form'),
       taskList = document.querySelector('.collection'),
+      moveBtn  = document.querySelector('.move-tasks'),
       clearBtn = document.querySelector('.clear-tasks'),
       label    = document.querySelector('#label');
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -7,6 +8,7 @@ let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 form.addEventListener('submit', addTask);
 taskList.addEventListener('click', toggleDone);
 taskList.addEventListener('click', removeTask);
+moveBtn.addEventListener('click', moveTask);
 clearBtn.addEventListener('click', clearTasks);
 populateList(tasks, taskList);
 buttons();
@@ -30,12 +32,11 @@ function populateList(plates = [], platesList) {
     if(plate.done === true) {
       return `
         <li data-index=${i} class="list-group-item d-flex justify-content-between align-items-center" data-index=${i} id="item${i}">
-          <div class="col-10">
-            <label for="item${i}" class="strike-through">${plate.text}</label>
+          <div class="col-9">
+            <label for="item${i}" class="label1 strike-through">${plate.text}</label>
           </div>
-          <div class="col container2">
+          <div class="col">
             <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''} />
-            <span class="checkmark"></span>
           </div>
           <div class="col">
             <a><i class="fas fa-trash-alt"></i></a>
@@ -45,12 +46,11 @@ function populateList(plates = [], platesList) {
       } else {
         return `
           <li data-index=${i} class="list-group-item d-flex justify-content-between align-items-center" data-index=${i} id="item${i}">
-            <div class="col-10">
-              <label for="item${i}">${plate.text}</label>
+            <div class="col-9">
+              <label for="item${i}"  class="label1">${plate.text}</label>
             </div>
-            <div class="col container2">
+            <div class="col">
               <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''} />
-              <span class="checkmark"></span>
             </div>
             <div class="col">
               <a><i class="fas fa-trash-alt"></i></a>
@@ -84,6 +84,12 @@ function removeTask(e) {
   buttons();
 }
 
+function moveTask(e) {
+  tasks.forEach(function(f) {
+    console.log(f);
+  });
+}
+
 function clearTasks(e) {
   while(taskList.firstChild) {
     taskList.removeChild(taskList.firstChild);
@@ -91,16 +97,17 @@ function clearTasks(e) {
   localStorage.clear();
   tasks = [];
   buttons();
-  
 }
 
 function buttons() {
   if(tasks.length < 1) {
     clearBtn.style.display = 'none';
     label.style.display = 'none';
+    moveBtn.style.display = 'none';
   } else {
     clearBtn.style.display = 'inline-block';
     label.style.display = 'block';
+    moveBtn.style.display = 'block';
   }
 }
 
