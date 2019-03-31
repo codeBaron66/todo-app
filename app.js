@@ -90,10 +90,16 @@ function removeTask(e) {
 }
 
 function moveTask(e) {
-  tasks.forEach(function(f) {
-    console.log(f);
-  });
-}
+  let done = [];
+  tasks.forEach(function(task) {
+    if(task.done == true) {
+      done.push(task);
+      tasks.splice(task, 1);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      }
+    });
+  }
+  console.log(tasks);
 
 function clearTasks(e) {
   while(taskList.firstChild) {
