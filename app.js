@@ -1,10 +1,11 @@
-const form     = document.querySelector('#task-form'),
-      taskList = document.querySelector('.collection'),
-      doneList = document.querySelector('.doneCollection'),
-      moveBtn  = document.querySelector('.move-tasks'),
-      clearBtn = document.querySelector('.clear-tasks'),
-      label    = document.querySelector('#label'),
-      doneDiv  = document.querySelector('.finished-div');
+const form      = document.querySelector('#task-form'),
+      taskList  = document.querySelector('.collection'),
+      doneList  = document.querySelector('.doneCollection'),
+      moveBtn   = document.querySelector('.move-tasks'),
+      clearBtn  = document.querySelector('.clear-tasks'),
+      finished  = document.querySelector('.clear-done'),
+      label     = document.querySelector('#label'),
+      doneDiv   = document.querySelector('.finished-div');
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 let doneTasks = JSON.parse(localStorage.getItem('done')) || [];
 
@@ -13,6 +14,7 @@ taskList.addEventListener('click', toggleDone);
 taskList.addEventListener('click', removeTask);
 moveBtn.addEventListener('click', moveTask);
 clearBtn.addEventListener('click', clearTasks);
+finished.addEventListener('click', clearDone);
 
 populateList(tasks, taskList);
 populateDoneList(doneTasks, doneList);
@@ -128,15 +130,12 @@ function clearTasks(e) {
   populateList(tasks, taskList);
 }
 
-// function clearTasks(e) {
-//   while(taskList.firstChild) {
-//     taskList.removeChild(taskList.firstChild);
-//   }
-//   localStorage.clear();
-//   tasks = [];
-//   buttons();
-//   finishedList();
-// }
+function clearDone(){
+  doneTasks = [];
+  localStorage.setItem('done', JSON.stringify(doneTasks));
+  populateDoneList(doneTasks, doneList);
+  finishedList();
+}
 
 function buttons() {
   if(tasks.length < 1) {
