@@ -89,17 +89,36 @@ function removeTask(e) {
   finishedList();
 }
 
-function moveTask(e) {
-  let done = [];
-  tasks.forEach(function(task) {
-    if(task.done == true) {
-      done.push(task);
-      tasks.splice(task, 1);
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-      }
-    });
+function moveTask() {
+  for (let i = 0; i < tasks.length; i++) {
+    let task = tasks[i];
+    if (task.done === true) {
+      doneTasks.push(task);
+      tasks.splice(i, 1);
+      i--;
+    }
   }
-  console.log(tasks);
+  // console.log(doneTasks);
+  // console.log(tasks1);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  localStorage.setItem('done', JSON.stringify(doneTasks));
+  populateList(tasks, taskList);
+}
+
+// function moveTask() {
+//   tasks1 = [];
+//   tasks.forEach(function(task, index) {
+//     if(task.done === true) {
+//       doneTasks.push(task);
+//     } else if (task.done === false) {
+//       tasks1.push(task);
+//     }
+//   });
+//   // console.log(tasks1);
+//   localStorage.setItem('tasks', JSON.stringify(tasks1));
+//   localStorage.setItem('done', JSON.stringify(doneTasks));
+//   // populateList(tasks, taskList);
+// }
 
 function clearTasks(e) {
   while(taskList.firstChild) {
