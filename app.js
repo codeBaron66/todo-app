@@ -1,5 +1,6 @@
 const form     = document.querySelector('#task-form'),
       taskList = document.querySelector('.collection'),
+      doneList = document.querySelector('.doneCollection'),
       moveBtn  = document.querySelector('.move-tasks'),
       clearBtn = document.querySelector('.clear-tasks'),
       label    = document.querySelector('#label'),
@@ -14,6 +15,7 @@ moveBtn.addEventListener('click', moveTask);
 clearBtn.addEventListener('click', clearTasks);
 
 populateList(tasks, taskList);
+populateDoneList(doneTasks, doneList);
 buttons();
 finishedList();
 
@@ -63,6 +65,20 @@ function populateList(plates = [], platesList) {
         `;
       }
   }).join('');
+  buttons();
+}
+
+function populateDoneList(plates = [], platesList) {
+  platesList.innerHTML = plates.map((plate, i) => {
+    return `
+    <div id="doneTasks">
+      <li>
+        ${plate.text}
+      </li>
+    </div>
+    `;
+  }).join('');
+  buttons();
 }
 
 function toggleDone(e) {
@@ -98,37 +114,29 @@ function moveTask() {
       i--;
     }
   }
-  // console.log(doneTasks);
-  // console.log(tasks1);
   localStorage.setItem('tasks', JSON.stringify(tasks));
   localStorage.setItem('done', JSON.stringify(doneTasks));
   populateList(tasks, taskList);
-}
-
-// function moveTask() {
-//   tasks1 = [];
-//   tasks.forEach(function(task, index) {
-//     if(task.done === true) {
-//       doneTasks.push(task);
-//     } else if (task.done === false) {
-//       tasks1.push(task);
-//     }
-//   });
-//   // console.log(tasks1);
-//   localStorage.setItem('tasks', JSON.stringify(tasks1));
-//   localStorage.setItem('done', JSON.stringify(doneTasks));
-//   // populateList(tasks, taskList);
-// }
-
-function clearTasks(e) {
-  while(taskList.firstChild) {
-    taskList.removeChild(taskList.firstChild);
-  }
-  localStorage.clear();
-  tasks = [];
+  populateDoneList(doneTasks, doneList);
   buttons();
   finishedList();
 }
+
+function clearTasks(e) {
+  tasks = [];
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  populateList(tasks, taskList);
+}
+
+// function clearTasks(e) {
+//   while(taskList.firstChild) {
+//     taskList.removeChild(taskList.firstChild);
+//   }
+//   localStorage.clear();
+//   tasks = [];
+//   buttons();
+//   finishedList();
+// }
 
 function buttons() {
   if(tasks.length < 1) {
